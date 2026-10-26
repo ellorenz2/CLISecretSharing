@@ -1,0 +1,9 @@
+[package]
+name = "CLISecretsharing"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+shamir_secret_sharing = "0.1.1"
+clap = { version = "4", features = ["derive"] }
