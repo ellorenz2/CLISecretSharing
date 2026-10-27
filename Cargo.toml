@@ -3,7 +3,28 @@ name = "CLISecretsharing"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
+description = "CLI tool for protecting break-the-glass secrets using Shamir's Secret Sharing"
+authors = ["Lorenzo Veneri <devlorenz@virgilio.it>"]
+readme = "README.md"
 
 [dependencies]
 shamir_secret_sharing = "0.1.1"
 clap = { version = "4", features = ["derive"] }
+
+[package.metadata.deb]
+name = "clisecretsharing"
+maintainer = "Lorenzo Veneri <devlorenz@virgilio.it>"
+copyright = "2026 devlorenz@virgilio.it"
+license-file = ["LICENSE", "4"]
+extended-description = """\
+CLISecretsharing is a command-line tool for system administrators and DevOps \
+teams to protect break-the-glass codes, master passwords, and sensitive \
+recovery keys using Shamir's Secret Sharing algorithm."""
+section = "utils"
+priority = "optional"
+assets = [
+    ["target/release/CLISecretsharing", "usr/bin/clisecretsharing", "755"],
+    ["target/release/CLISecretsharing", "usr/bin/CLISecretsharing", "755"],
+    ["README.md", "usr/share/doc/clisecretsharing/README.md", "644"],
+    ["LICENSE", "usr/share/doc/clisecretsharing/LICENSE", "644"],
+]

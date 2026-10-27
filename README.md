@@ -9,6 +9,9 @@ A CLI tool for system administrators and DevOps teams to protect "break-the-glas
 - [Overview](#overview)
 - [How It Works](#how-it-works)
 - [Installation](#installation)
+  - [Debian / Ubuntu Package (.deb)](#debian--ubuntu-package-deb)
+  - [Build From Source](#build-from-source)
+  - [Build .deb Package Locally](#build-deb-package-locally)
 - [Usage](#usage)
   - [1. Generating Shares (`--generate`)](#1-generating-shares---generate)
   - [2. Recomposing the Secret (`--compose`)](#2-recomposing-the-secret---compose)
@@ -50,16 +53,42 @@ The application operates over a finite field using the standard large secp256k1 
 
 ## Installation
 
-### Prerequisites
+### Debian / Ubuntu Package (.deb)
+
+Pre-built Debian packages are built automatically by GitHub Actions on every release and commit:
+
+1. Download the latest `.deb` package from GitHub Releases or workflow artifacts.
+2. Install with `dpkg`:
+```bash
+sudo dpkg -i clisecretsharing_*_amd64.deb
+sudo apt-get install -f  # resolves any missing dependencies if needed
+```
+
+Once installed, the command is available system-wide as both `clisecretsharing` and `CLISecretsharing`:
+```bash
+clisecretsharing --help
+```
+
+### Build From Source
+
+#### Prerequisites
 - [Rust and Cargo](https://rustup.rs/) (edition 2024 or later)
 
-### Build from source
 ```bash
-git clone https://github.com/your-username/CLISecretsharing.git
+git clone https://github.com/devlorenz/CLISecretsharing.git
 cd CLISecretsharing
 cargo build --release
 ```
 The executable binary will be available at `./target/release/CLISecretsharing`.
+
+### Build .deb Package Locally
+
+If you have [cargo-deb](https://github.com/kornelski/cargo-deb) installed:
+```bash
+cargo install cargo-deb
+cargo deb
+sudo dpkg -i target/debian/clisecretsharing_*_amd64.deb
+```
 
 ---
 
